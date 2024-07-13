@@ -8,7 +8,7 @@
 - As classes permitem organizar o código de forma modular, reutilizável e fácil de entender.
 
 `Objeto em Python`:
-- Um <b>objeto</> é uma <b>instância</b> de uma classe.
+- Um <b>objeto</b> é uma <b>instância</b> de uma classe.
 - Uma classe é uma estrutura que define as características e comportamentos do objeto.
 - Em outras palavras, um objeto representa uma entidade ou conceito, com suas propriedades (variáveis) e ações (métodos) associadas
 
