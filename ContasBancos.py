@@ -2,11 +2,13 @@
 # criação da classe
 class ContaCorrente:
 
-    def __init__(self, nome, cpf): # O método __init__ é chamado quando um objeto é criado. Ele inicializa os atributos da instância.
+    def __init__(self, nome, cpf, agencia, num_conta): # O método __init__ é chamado quando um objeto é criado. Ele inicializa os atributos da instância.
         self.nome = nome
         self.cpf = cpf
         self.saldo = 0
         self.limite = None
+        self.agencia = agencia
+        self.num_conta = num_conta
 
     # Criação de metodos
     def consultar_saldo(self):
@@ -22,7 +24,6 @@ class ContaCorrente:
     def sacar_dinheiro(self, valor): #metodo sacar
         if self.saldo - valor < self._limite_conta(): # utilizando o metodo limite_conta para validar limite
             print("Você não tem Saldo suficiente para sacar esse valor")
-            self.consultar_saldo() # utilizando o metodo consultar_saldo para validar saldo
         else:
             self.saldo -= valor
 
@@ -30,7 +31,7 @@ class ContaCorrente:
         print('Seu límite de cheque especial é de R${:,.2f}'.format(self._limite_conta())) #metodo consulta cheque especial
 
 # programa
-conta = ContaCorrente("Daniel", "111.111.111-00")
+conta = ContaCorrente("Daniel", "111.111.111-00", 123456, 34062)
 
 ## depositando dinheiro
 conta.deposita(10000) # utilizando metodo depositar
