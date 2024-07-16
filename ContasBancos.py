@@ -1,6 +1,6 @@
 # Orientação a objetos
 from datetime import datetime # biblioteca para pegar data e hora
-import pytz # biblioteca para formatação de suso
+import pytz # biblioteca para formatação de fuso
 
 
 # criação da classe
