@@ -47,8 +47,17 @@ class ContaCorrente:
     def consultar_historico_transacoes(self):  # metodo para historico de transação
         print('Histórico de Transaç es')
         print('Valor, Saldo, Data e Hora')
-        for transacao in  self.transacoes:
+        for transacao in self.transacoes:
             print(transacao)
+
+    def transferir(self, valor, conta_destino): # metodo transferir para utilizar  parametro de conta para transferir
+        if self.saldo - valor < self._limite_conta():  # utilizando o metodo limite_conta para validar limite
+            print("Você não tem Saldo suficiente para transferir")
+        else:
+            self.saldo -= valor
+            self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
+            conta_destino.saldo += valor
+            conta_destino.transacoes.append((valor, conta_destino.saldo, ContaCorrente._data_hora()))
 
 
 #  programa
@@ -59,12 +68,29 @@ conta.deposita(10000)  # utilizando metodo depositar
 conta.consultar_saldo()  # utilizando metodo consultar
 
 #  sacando dinheir
-conta.sacar_dinheiro(10500)  # utilizando sacar dinheiro
+#  conta.sacar_dinheiro(10500)  # utilizando sacar dinheiro
 
 print('Saldo Final')
 conta.consultar_saldo()  # utilizando metodo consultar
 conta.consulta_limite_chequeespecial()  # utilizando limite chequeespecial
+
 print('--' * 20)
 conta.consultar_historico_transacoes()  # utilizando historico de transação
+
+print('--' * 20)
+conta_2 = ContaCorrente('Fulano', "222-222-222-22", 564445, 44444)
+conta.transferir(850, conta_2) # utilizzando o meto de tranferir para outra conta
+
+print('--' * 20)
+conta.consultar_saldo()
+
+print('--' * 20)
+conta_2.consultar_saldo()
+
+print('--' * 20)
+conta.consultar_historico_transacoes()
+
+print('--' * 20)
+conta_2.consultar_historico_transacoes()
 
 
