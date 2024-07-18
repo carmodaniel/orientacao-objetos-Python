@@ -5,6 +5,18 @@ import pytz # biblioteca para formatação de suso
 
 # criação da classe
 class ContaCorrente:
+    """
+    Cria um objeto ContaCorrente para gerenciar as contas dos clientes.
+
+    Atributos:
+        nome (str): Nome do cliente.
+        cpf (str): CPF do clinete, deve ser inserido com pontos e traço.
+        saldo: saldo disponível da conta do cliente
+        limite: Limite de cheque especial do cliente
+        agencia: Agencia da conta do cliente
+        num_conta: Número da conta do cliente
+        transacoes: Histórico de transações do cliente
+    """
 
     @staticmethod  # O @staticmethod em Python é um decorador usado para definir um método estático dentro de uma classe. Vamos entender o que isso significa:
     def _data_hora():  # Um método estático é uma função que pertence à classe, mas não depende de instâncias específicas (objetos) dessa classe
@@ -92,5 +104,7 @@ conta.consultar_historico_transacoes()
 
 print('--' * 20)
 conta_2.consultar_historico_transacoes()
+
+help(ContaCorrente)  # exibe informações sobre a classe.
 
 
