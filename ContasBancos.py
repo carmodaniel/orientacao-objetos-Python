@@ -25,32 +25,32 @@ class ContaCorrente:
         return horario_br.strftime('%d/%m/%Y %H:%M:%S') # utilzando strftime para formatar data e hora em dia/mes/Ano Hora:Minuto:Segundo
 
     def __init__(self, nome, cpf, agencia, num_conta):  # O método __init__ é chamado quando um objeto é criado. Ele inicializa os atributos da instância.
-        self.nome = nome
-        self.cpf = cpf
-        self.saldo = 0
-        self.limite = None
-        self.agencia = agencia
-        self.num_conta = num_conta
-        self.transacoes = []
+        self._nome = nome
+        self._cpf = cpf
+        self._saldo = 0
+        self._limite = None
+        self._agencia = agencia
+        self._num_conta = num_conta
+        self._transacoes = []
 
     # Criação de metodos
     def consultar_saldo(self):
-        print('Seu saldo atual é de R${:,.2f}'.format(self.saldo))
+        print('Seu saldo atual é de R${:,.2f}'.format(self._saldo))
 
     def deposita(self, valor):  # metodo depositar
-        self.saldo += valor
-        self.transacoes.append((valor, self.saldo, ContaCorrente._data_hora()))
+        self._saldo += valor
+        self._transacoes.append((valor, self._saldo, ContaCorrente._data_hora()))
 
     def _limite_conta(self):  # metodo limite conta interno para ser urtilizado dentro da classe
-        self.limite = -1000
-        return self.limite
+        self._limite = -1000
+        return self._limite
 
     def sacar_dinheiro(self, valor):  # metodo sacar
-        if self.saldo - valor < self._limite_conta():  # utilizando o metodo limite_conta para validar limite
+        if self._saldo - valor < self._limite_conta():  # utilizando o metodo limite_conta para validar limite
             print("Você não tem Saldo suficiente para sacar esse valor")
         else:
-            self.saldo -= valor
-            self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
+            self._saldo -= valor
+            self._transacoes.append((-valor, self._saldo, ContaCorrente._data_hora()))
 
     def consulta_limite_chequeespecial(self):  # metodo consulta cheque especial
         print('Seu límite de cheque especial é de R${:,.2f}'.format(
@@ -59,17 +59,17 @@ class ContaCorrente:
     def consultar_historico_transacoes(self):  # metodo para historico de transação
         print('Histórico de Transaç es')
         print('Valor, Saldo, Data e Hora')
-        for transacao in self.transacoes:
+        for transacao in self._transacoes:
             print(transacao)
 
     def transferir(self, valor, conta_destino): # metodo transferir para utilizar  parametro de conta para transferir
-        if self.saldo - valor < self._limite_conta():  # utilizando o metodo limite_conta para validar limite
+        if self._saldo - valor < self._limite_conta():  # utilizando o metodo limite_conta para validar limite
             print("Você não tem Saldo suficiente para transferir")
         else:
-            self.saldo -= valor
-            self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
-            conta_destino.saldo += valor
-            conta_destino.transacoes.append((valor, conta_destino.saldo, ContaCorrente._data_hora()))
+            self._saldo -= valor
+            self._transacoes.append((-valor, self._saldo, ContaCorrente._data_hora()))
+            conta_destino._saldo += valor
+            conta_destino._transacoes.append((valor, conta_destino._saldo, ContaCorrente._data_hora()))
 
 
 #  programa
@@ -105,6 +105,4 @@ conta.consultar_historico_transacoes()
 print('--' * 20)
 conta_2.consultar_historico_transacoes()
 
-help(ContaCorrente)  # exibe informações sobre a classe.
-
-
+help(ContaCorrente)  # 0exibe informações sobre a classe.
