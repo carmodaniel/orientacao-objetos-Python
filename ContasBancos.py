@@ -1,6 +1,7 @@
 # Orientação a objetos
 from datetime import datetime # biblioteca para pegar data e hora
 import pytz # biblioteca para formatação de suso
+from random import randint
 
 
 # criação da classe
@@ -32,6 +33,7 @@ class ContaCorrente:
         self._agencia = agencia
         self._num_conta = num_conta
         self._transacoes = []
+        self.cartoes = []
 
     # Criação de metodos
     def consultar_saldo(self):
@@ -71,38 +73,63 @@ class ContaCorrente:
             conta_destino._saldo += valor
             conta_destino._transacoes.append((valor, conta_destino._saldo, ContaCorrente._data_hora()))
 
+class CartaoCredito:
+
+    @staticmethod  # O @staticmethod em Python é um decorador usado para definir um método estático dentro de uma classe. Vamos entender o que isso significa:
+    def _data_hora():  # Um método estático é uma função que pertence à classe, mas não depende de instâncias específicas (objetos) dessa classe
+        fuso_br = pytz.timezone('Brazil/East')  # utilzando pytz.timezone para pegar timezone do brasil
+        horario_br = datetime.now(fuso_br)
+        return horario_br
+
+    def __init__(self, titula, conta_corrente):
+        self.numero = randint(1000000000000000,9999999999999999)
+        self.titular = titula
+        self.validade ='{}/{}'.format(CartaoCredito._data_hora().month, CartaoCredito._data_hora().year+4)
+        self.cod_seguranca = '{}{}{}'.format(randint(0,9), randint(0,9), randint(0,9))
+        self.limite = 1000
+        self.conta_corrente = conta_corrente
+        conta_corrente.cartoes.append(self)
+
 
 #  programa
 conta = ContaCorrente("Daniel", "111.111.111-00", 123456, 34062)
 
+cartao = CartaoCredito("Daniel", conta)
+
+print(cartao.conta_corrente._num_conta)
+
+print(cartao.numero)
+print(cartao.cod_seguranca)
+print(cartao.validade)
+
 # depositando dinheiro
-conta.deposita(10000)  # utilizando metodo depositar
-conta.consultar_saldo()  # utilizando metodo consultar
+#conta.deposita(10000)  # utilizando metodo depositar
+#conta.consultar_saldo()  # utilizando metodo consultar
 
 #  sacando dinheir
 #  conta.sacar_dinheiro(10500)  # utilizando sacar dinheiro
 
-print('Saldo Final')
-conta.consultar_saldo()  # utilizando metodo consultar
-conta.consulta_limite_chequeespecial()  # utilizando limite chequeespecial
+#print('Saldo Final')
+#conta.consultar_saldo()  # utilizando metodo consultar
+#conta.consulta_limite_chequeespecial()  # utilizando limite chequeespecial
 
-print('--' * 20)
-conta.consultar_historico_transacoes()  # utilizando historico de transação
+#print('--' * 20)
+#conta.consultar_historico_transacoes()  # utilizando historico de transação
 
-print('--' * 20)
-conta_2 = ContaCorrente('Fulano', "222-222-222-22", 564445, 44444)
-conta.transferir(850, conta_2) # utilizzando o meto de tranferir para outra conta
+#print('--' * 20)
+#conta_2 = ContaCorrente('Fulano', "222-222-222-22", 564445, 44444)
+#conta.transferir(850, conta_2) # utilizzando o meto de tranferir para outra conta
 
-print('--' * 20)
-conta.consultar_saldo()
+#print('--' * 20)
+#conta.consultar_saldo()
 
-print('--' * 20)
-conta_2.consultar_saldo()
+#print('--' * 20)
+#conta_2.consultar_saldo()
 
-print('--' * 20)
-conta.consultar_historico_transacoes()
+#print('--' * 20)
+#conta.consultar_historico_transacoes()
 
-print('--' * 20)
-conta_2.consultar_historico_transacoes()
+#print('--' * 20)
+#conta_2.consultar_historico_transacoes()
 
-help(ContaCorrente)  # 0exibe informações sobre a classe.
+#help(ContaCorrente)  # 0exibe informações sobre a classe.
