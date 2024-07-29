@@ -114,6 +114,10 @@ print(conta.nome)
 cartao.senha = '1222'
 print(cartao.senha)
 
+# __dict__  é um dicionário que contém todos os atributos de um objeto, incluindo métodos e variáveis de instância.
+print(conta.__dict__)
+print(cartao.__dict__)
+
 #print(cartao.conta_corrente._num_conta)
 
 #print(cartao.numero)
