@@ -40,6 +40,16 @@ class AgenciaVirtual(Agencia):
         self.site = site
         super().__init__(telefone, cnpj, 1000) # chamado __init__ da classe principal
         self.caixa = 1000000
+        self.caixa_paypal = 0
+
+    def depositar_paypal(self, valor): # metodos especifico
+        self.caixa -= valor
+        self.caixa_paypal += valor
+
+    def sacar_paypa(self, valor): # metodos especifico
+        self.caixa_paypal -= valor
+        self.caixa_paypal += valor
+
 
 class AgenciaPremium(Agencia):
     def __init__(self, telefone, cnpj):
@@ -51,12 +61,9 @@ agencia_primeira = Agencia(123456789, 122222122212221, 11111)
 
 agencia_virtual = AgenciaVirtual('www.agencia.virtual.com.br', 222222, 1511111)
 agencia_virtual.verificar_caixa()
-print(agencia_virtual.site)
-
 agencia_comum = AgenciaComun(222222221, 25555566666)
-agencia_comum.verificar_caixa()
-
 agenciacia_premium = AgenciaPremium(33333333555, 66666666555)
-agenciacia_premium.verificar_caixa()
 
-
+agencia_virtual.depositar_paypal(20000)
+print(agencia_virtual.caixa)
+print(agencia_virtual.caixa_paypal)
