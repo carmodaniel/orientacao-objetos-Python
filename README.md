@@ -12,7 +12,7 @@
 - Uma classe é uma estrutura que define as características e comportamentos do objeto.
 - Em outras palavras, um objeto representa uma entidade ou conceito, com suas propriedades (variáveis) e ações (métodos) associadas
 
-  ## Exempplo:
+  ## Exemplo:
 > - Classe: Pessoa
  > > - Métodos: Andar, Pular, Correr, Aprender Python
 > > > -  Atributos: Pesso, Altura, QI, Tipo Sangúineo.
